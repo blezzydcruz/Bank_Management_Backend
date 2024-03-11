@@ -12,4 +12,24 @@ public class AccountHolderControllerTests {
         assertThat(found.size()).isEqualTo(1);
     }
 
+    public void canEditAccountHolderEmploymentStatus() {
+
+    }
+
+    public void canEditAccountHolderAddress() {
+
+    }
+
+    public void canEditAccountHolderEmail() {
+
+    }
+
+    public void canEditAccountHolderPhoneNumber() {
+
+    }
+
+    public void canCreateNewAccountHolder() {
+
+    }
+
 }
