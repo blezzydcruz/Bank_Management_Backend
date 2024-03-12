@@ -2,6 +2,7 @@ package com.project.avatar_bank.models;
 
 import java.time.LocalDate;
 
+
 public class AccountHolder {
 
     private int id;
@@ -16,16 +17,19 @@ public class AccountHolder {
 
     private String email;
 
+    private String password;
+
     private String phoneNumber;
 
     private LocalDate dateOfBirth;
 
-    public AccountHolder(String firstName, String lastName, EmploymentStatus employmentStatus, String address, String email, String phoneNumber, LocalDate dateOfBirth) {
+    public AccountHolder(String firstName, String lastName, EmploymentStatus employmentStatus, String address, String email, String password, String phoneNumber, LocalDate dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.employmentStatus = employmentStatus;
         this.address = address;
         this.email = email;
+        this.password = password;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
     }
@@ -79,6 +83,14 @@ public class AccountHolder {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPhoneNumber() {
