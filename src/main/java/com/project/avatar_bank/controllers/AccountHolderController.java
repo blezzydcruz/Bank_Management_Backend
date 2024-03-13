@@ -2,6 +2,7 @@ package com.project.avatar_bank.controllers;
 
 import com.project.avatar_bank.models.AccountHolder;
 import com.project.avatar_bank.models.AccountHolderDTO;
+import com.project.avatar_bank.services.AccountHolderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,19 +34,19 @@ public class AccountHolderController {
     }
 
 //    PUT/EDIT
-    public ResponseEntity<AccountHolder> editAccountHolderEmploymentStatus(@RequestBody AccountHolderDTO accountHolderDTO) {
+    public ResponseEntity<AccountHolder> editAccountHolderEmploymentStatus(@RequestBody AccountHolderDTO accountHolderDTO, @PathVariable int id) {
         AccountHolder editEmploymentStatus = accountHolderService.updateAccountHolderEmploymentStatus(accountHolderDTO, id);
         return new ResponseEntity<>(editEmploymentStatus, HttpStatus.OK);
 
     }
 
-    public ResponseEntity<AccountHolder> editAccountHolderAddress(@RequestBody AccountHolderDTO accountHolderDTO) {
+    public ResponseEntity<AccountHolder> editAccountHolderAddress(@RequestBody AccountHolderDTO accountHolderDTO,  @PathVariable int id) {
         AccountHolder editAddress = accountHolderService.updateAccountHolderAddress(accountHolderDTO, id);
         return new ResponseEntity<>(editAddress, HttpStatus.OK);
 
     }
 
-    public ResponseEntity<AccountHolder> editAccountHolderEmail(@RequestBody AccountHolderDTO accountHolderDTO) {
+    public ResponseEntity<AccountHolder> editAccountHolderEmail(@RequestBody AccountHolderDTO accountHolderDTO,  @PathVariable int id) {
         AccountHolder editEmail = accountHolderService.updateAccountHolderEmail(accountHolderDTO, id);
         return new ResponseEntity<>(editEmail, HttpStatus.OK);
 

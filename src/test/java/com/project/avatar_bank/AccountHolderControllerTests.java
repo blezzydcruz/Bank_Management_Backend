@@ -1,7 +1,10 @@
-package com.project.avatar_bank.controllers;
+package com.project.avatar_bank;
 
+import com.project.avatar_bank.controllers.AccountHolderController;
 import com.project.avatar_bank.models.AccountHolder;
 import com.project.avatar_bank.models.EmploymentStatus;
+import com.project.avatar_bank.repositories.AccountHolderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
@@ -12,10 +15,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @SpringBootTest
 public class AccountHolderControllerTests {
 
+    @Autowired
     AccountHolderController accountHolderController;
 
+    @Autowired
+    AccountHolderRepository accountHolderRepository;
+
     public void canGetAllAccountHolders() {
-        List<AccountHolder> foundAllAccountHolders = accountHolderRepository.getAllAccountHolders();
+        List<AccountHolder> foundAllAccountHolders = accountHolderService.findAllAccountHolders();
     }
 
     public void canGetAccountHolderById() {
@@ -26,21 +33,21 @@ public class AccountHolderControllerTests {
     public void canEditAccountHolderEmploymentStatus() {
         AccountHolder mockAccountHolder = new AccountHolder("Anna", "Chan", EmploymentStatus.STUDENT, "12 Wonderland", "annachan@example.com", "annachan!", "0123456", LocalDate.of(2001, 3, 12));
 
-        AccountHolderController.editAccountHolderEmploymentStatus(EmploymentStatus.EMPLOYED);
+        AccountHolderController.editAccountHolderDetails(EmploymentStatus.EMPLOYED);
         assertThat(mockAccountHolder.getEmploymentStatus()).isEqualTo(EmploymentStatus.EMPLOYED);
     }
 
     public void canEditAccountHolderAddress() {
         AccountHolder mockAccountHolder = new AccountHolder("Anna", "Chan", EmploymentStatus.STUDENT, "12 Wonderland", "annachan@example.com", "annachan!", "0123456", LocalDate.of(2001, 3, 12));
 
-        AccountHolderController.editAccountHolderAddress("8 Columbia Road");
+        AccountHolderController.editAccountHolderDetails("8 Columbia Road");
         assertThat(mockAccountHolder.getAddress()).isEqualTo("8 Columbia Road");
     }
 
     public void canEditAccountHolderEmail() {
         AccountHolder mockAccountHolder = new AccountHolder("Anna", "Chan", EmploymentStatus.STUDENT, "12 Wonderland", "annachan@example.com", "annachan!","0123456", LocalDate.of(2001, 3, 12));
 
-        AccountHolderController.editAccountHolderEmail("a.chan1@example.com");
+        AccountHolderController.editAccountHolderDetails("a.chan1@example.com");
         assertThat(mockAccountHolder.getEmail()).isEqualTo("a.chan1@example.com");
 
     }
@@ -48,7 +55,7 @@ public class AccountHolderControllerTests {
     public void canEditAccountHolderPhoneNumber() {
         AccountHolder mockAccountHolder = new AccountHolder("Anna", "Chan", EmploymentStatus.STUDENT, "12 Wonderland", "annachan@example.com", "annachan!","0123456", LocalDate.of(2001, 3, 12));
 
-        AccountHolderController.editAccountHolderPhoneNumber("0987654");
+        AccountHolderController.editAccountHolderDetails("0987654");
         assertThat(mockAccountHolder.getPhoneNumber()).isEqualTo("0987654");
 
     }
