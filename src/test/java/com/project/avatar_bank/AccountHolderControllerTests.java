@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.project.avatar_bank.models.EmploymentStatus.FULL_TIME;
@@ -31,12 +32,25 @@ public class AccountHolderControllerTests {
     AccountHolderService accountHolderService;
 
     public void canGetAllAccountHolders() {
-        List<AccountHolder> foundAllAccountHolders = accountHolderService.findAllAccountHolders();
+        List<AccountHolder> expectedAccountHolders = new ArrayList<>();
+
+        when(accountHolderService.findAllAccountHolders()).thenReturn(expectedAccountHolders);
+        ResponseEntity<List<AccountHolder>> allAccountHolders = accountHolderController.getAllAccountHolders();
+
+        assertThat(allAccountHolders.getStatusCode()).isEqualTo(HttpStatus.FOUND);
+        assertThat(allAccountHolders.getBody()).isEqualTo(expectedAccountHolders);
+
     }
 
     public void canGetAccountHolderById() {
-        List<AccountHolder> foundAccountHolder = accountHolderRepository.findAccountHolderById(1);
-        assertThat(foundAccountHolder.size()).isEqualTo(1);
+        int id = 1;
+        AccountHolder expectedAccountHolder = new AccountHolder();
+
+        when(accountHolderService.findAccountHolderById(id)).thenReturn(expectedAccountHolder);
+        ResponseEntity<AccountHolder> foundAccountHolder = accountHolderController.getAccountHolderById(id);
+
+        assertThat(foundAccountHolder.getStatusCode()).isEqualTo(HttpStatus.FOUND);
+        assertThat(foundAccountHolder.getBody()).isEqualTo(1);
     }
 
     public void canEditAccountDetails() {
@@ -59,8 +73,11 @@ public class AccountHolderControllerTests {
     }
 
     public void canCreateNewAccountHolder() {
-        AccountHolder newMockAccountHolder = new AccountHolder("Anna", "Chan", EmploymentStatus.STUDENT, "12 Wonderland", "annachan@example.com", "annachan!","0123456", LocalDate.of(2001, 3, 12));
-        accountHolderRepository.save(newMockAccountHolder);
+        AccountHolderDTO accountHolderDTO = new AccountHolderDTO();
+
+        ResponseEntity<AccountHolder> accountHolder = accountHolderController.createNewAccountHolder(accountHolderDTO);
+
+        assertThat(accountHolder.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
     }
 

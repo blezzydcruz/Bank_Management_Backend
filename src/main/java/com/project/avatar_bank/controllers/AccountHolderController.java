@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @RestController
 @RequestMapping
@@ -30,14 +28,9 @@ public class AccountHolderController {
     }
 
     public ResponseEntity<AccountHolder> getAccountHolderById(@PathVariable int id) {
-        try {
-            AccountHolder accountHolder = accountHolderService.findAccountHolderById(id);
-            return new ResponseEntity<>(accountHolder, HttpStatus.FOUND);
+        AccountHolder accountHolder = accountHolderService.findAccountHolderById(id);
+        return new ResponseEntity<>(accountHolder, HttpStatus.FOUND);
 
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-        }
     }
 
 //    PUT/EDIT
@@ -49,8 +42,8 @@ public class AccountHolderController {
 
 //    POST/CREATE
     public ResponseEntity<AccountHolder> createNewAccountHolder(@RequestBody AccountHolderDTO accountHolderDTO) {
-        AccountHolder newAccountHolder = accountHolderService.addNewAccountHolder(accountHolderDTO);
-        return new ResponseEntity<>(newAccountHolder, HttpStatus.CREATED);
+        accountHolderService.addNewAccountHolder(accountHolderDTO);
+        return new ResponseEntity<>(accountHolderService.addNewAccountHolder(accountHolderDTO), HttpStatus.CREATED);
 
     }
 

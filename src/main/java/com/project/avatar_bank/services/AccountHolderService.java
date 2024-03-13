@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 public class AccountHolderService {
@@ -22,7 +21,7 @@ public class AccountHolderService {
     }
 
     public AccountHolder findAccountHolderById(int id) {
-        return accountHolderRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No account found"));
+        return accountHolderRepository.findById(id).get();
     }
 
 //    PUT/EDIT
@@ -41,9 +40,7 @@ public class AccountHolderService {
 //    POST/CREATE
     public AccountHolder addNewAccountHolder(AccountHolderDTO accountHolderDTO) {
         AccountHolder newAccountHolder = new AccountHolder(accountHolderDTO.getFirstName(), accountHolderDTO.getLastName(), accountHolderDTO.getEmploymentStatus(), accountHolderDTO.getAddress(), accountHolderDTO.getEmail(), accountHolderDTO.getPassword(), accountHolderDTO.getPhoneNumber(), accountHolderDTO.getDateOfBirth());
-        accountHolderRepository.save(newAccountHolder);
-        return newAccountHolder;
-
+        return accountHolderRepository.save(newAccountHolder);
     }
 
 }
