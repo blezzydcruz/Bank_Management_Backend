@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class AccountHolderService {
@@ -20,16 +22,28 @@ public class AccountHolderService {
     }
 
     public AccountHolder findAccountHolderById(int id) {
-        return accountHolderRepository.findById(id).get();
+        return accountHolderRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No account found"));
     }
 
 //    PUT/EDIT
-    public AccountHolder updateAccountHolderEmploymentStatus(AccountHolderDTO accountHolderDTO, int id) {
-        AccountHolder toEditEmploymentStatus = accountHolderRepository.findById(id).get();
-        toEditEmploymentStatus.setEmploymentStatus(accountHolderDTO.getEmploymentStatus());
-        accountHolderRepository.save(toEditEmploymentStatus);
-        return toEditEmploymentStatus;
+    public AccountHolder updateAccountHolderDetails(AccountHolderDTO accountHolderDTO, int id) {
+        AccountHolder toEditAccountHolder = accountHolderRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No account found"));
+
+        toEditAccountHolder.setEmploymentStatus(accountHolderDTO.getEmploymentStatus());
+        toEditAccountHolder.setAddress(accountHolderDTO.getAddress());
+        toEditAccountHolder.setEmail(accountHolderDTO.getEmail());
+        toEditAccountHolder.setPhoneNumber(accountHolderDTO.getPhoneNumber());
+
+        accountHolderRepository.save(toEditAccountHolder);
+        return toEditAccountHolder;
     }
 
+//    POST/CREATE
+    public AccountHolder addNewAccountHolder(AccountHolderDTO accountHolderDTO) {
+        AccountHolder newAccountHolder = new AccountHolder(accountHolderDTO.getFirstName(), accountHolderDTO.getLastName(), accountHolderDTO.getEmploymentStatus(), accountHolderDTO.getAddress(), accountHolderDTO.getEmail(), accountHolderDTO.getPassword(), accountHolderDTO.getPhoneNumber(), accountHolderDTO.getDateOfBirth());
+        accountHolderRepository.save(newAccountHolder);
+        return newAccountHolder;
+
+    }
 
 }

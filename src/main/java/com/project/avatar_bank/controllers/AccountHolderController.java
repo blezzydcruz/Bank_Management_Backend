@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 @RestController
 @RequestMapping
 public class AccountHolderController {
@@ -19,49 +22,35 @@ public class AccountHolderController {
     @Autowired
     AccountHolderService accountHolderService;
 
-    @Autowired
-    AccountHolderDTO accountHolderDTO;
 
 //    GET/SHOW
     public ResponseEntity<List<AccountHolder>> getAllAccountHolders() {
-        return new ResponseEntity<>(accountHolderService.findAllAccountHolders(), HttpStatus.OK);
+        return new ResponseEntity<>(accountHolderService.findAllAccountHolders(), HttpStatus.FOUND);
+
     }
 
     public ResponseEntity<AccountHolder> getAccountHolderById(@PathVariable int id) {
-        AccountHolder accountHolder = accountHolderService.findAccountHolderById(id);
-        return new ResponseEntity<>(accountHolder, HttpStatus.OK);
+        try {
+            AccountHolder accountHolder = accountHolderService.findAccountHolderById(id);
+            return new ResponseEntity<>(accountHolder, HttpStatus.FOUND);
 
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        }
     }
 
 //    PUT/EDIT
-    public ResponseEntity<AccountHolder> editAccountHolderEmploymentStatus(@RequestBody AccountHolderDTO accountHolderDTO, @PathVariable int id) {
-        AccountHolder editEmploymentStatus = accountHolderService.updateAccountHolderEmploymentStatus(accountHolderDTO, id);
-        return new ResponseEntity<>(editEmploymentStatus, HttpStatus.OK);
-
-    }
-
-    public ResponseEntity<AccountHolder> editAccountHolderAddress(@RequestBody AccountHolderDTO accountHolderDTO,  @PathVariable int id) {
-        AccountHolder editAddress = accountHolderService.updateAccountHolderAddress(accountHolderDTO, id);
-        return new ResponseEntity<>(editAddress, HttpStatus.OK);
-
-    }
-
-    public ResponseEntity<AccountHolder> editAccountHolderEmail(@RequestBody AccountHolderDTO accountHolderDTO,  @PathVariable int id) {
-        AccountHolder editEmail = accountHolderService.updateAccountHolderEmail(accountHolderDTO, id);
-        return new ResponseEntity<>(editEmail, HttpStatus.OK);
-
-    }
-
-    public ResponseEntity<AccountHolder> editAccountHolderPhoneNumber(@RequestBody AccountHolderDTO accountHolderDTO) {
-        AccountHolder editPhoneNumber = accountHolderService.updateAccountHolderPhoneNumber(accountHolderDTO, id);
-        return new ResponseEntity<>(editPhoneNumber, HttpStatus.OK);
+    public ResponseEntity<AccountHolder> editAccountHolderDetails(@RequestBody AccountHolderDTO accountHolderDTO, @PathVariable int id) {
+        AccountHolder editAccountHolder = accountHolderService.updateAccountHolderDetails(accountHolderDTO, id);
+        return new ResponseEntity<>(editAccountHolder, HttpStatus.OK);
 
     }
 
 //    POST/CREATE
-    public ResponseEntity<AccountHolder> createNewAccountHolder(@RequestBody AccountHolderDTO accountHolderDTO, @PathVariable int id) {
-        accountHolderService.addNewAccountHolder(accountHolderDTO);
-        return new ResponseEntity<>(accountHolderService.findAllAccountHolders(), HttpStatus.CREATED);
+    public ResponseEntity<AccountHolder> createNewAccountHolder(@RequestBody AccountHolderDTO accountHolderDTO) {
+        AccountHolder newAccountHolder = accountHolderService.addNewAccountHolder(accountHolderDTO);
+        return new ResponseEntity<>(newAccountHolder, HttpStatus.CREATED);
 
     }
 
