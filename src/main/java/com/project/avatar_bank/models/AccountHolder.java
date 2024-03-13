@@ -1,26 +1,40 @@
 package com.project.avatar_bank.models;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
-
+@Entity
+@Table(name = "account_holders")
 public class AccountHolder {
 
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column
     private String firstName;
 
+    @Column
     private String lastName;
 
+    @Column
     private EmploymentStatus employmentStatus;
 
+    @Column
     private String address;
 
+    @Column
     private String email;
 
+    @Column
     private String password;
 
+    @Column
     private String phoneNumber;
 
+    @Column
     private LocalDate dateOfBirth;
 
     public AccountHolder(String firstName, String lastName, EmploymentStatus employmentStatus, String address, String email, String password, String phoneNumber, LocalDate dateOfBirth) {

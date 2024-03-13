@@ -43,14 +43,14 @@ public class AccountHolderControllerTests {
     }
 
     public void canGetAccountHolderById() {
-        int id = 1;
         AccountHolder expectedAccountHolder = new AccountHolder();
+        expectedAccountHolder.setId(1);
 
-        when(accountHolderService.findAccountHolderById(id)).thenReturn(expectedAccountHolder);
-        ResponseEntity<AccountHolder> foundAccountHolder = accountHolderController.getAccountHolderById(id);
+        when(accountHolderService.findAccountHolderById(1)).thenReturn(expectedAccountHolder);
+        ResponseEntity<AccountHolder> foundAccountHolder = accountHolderController.getAccountHolderById(1);
 
         assertThat(foundAccountHolder.getStatusCode()).isEqualTo(HttpStatus.FOUND);
-        assertThat(foundAccountHolder.getBody()).isEqualTo(1);
+        assertThat(foundAccountHolder.getBody()).isEqualTo(expectedAccountHolder.getId());
     }
 
     public void canEditAccountDetails() {
