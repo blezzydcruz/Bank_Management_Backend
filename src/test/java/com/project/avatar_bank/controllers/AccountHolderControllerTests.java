@@ -12,6 +12,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @SpringBootTest
 public class AccountHolderControllerTests {
 
+    AccountHolderController accountHolderController;
+
     public void canGetAllAccountHolders() {
         List<AccountHolder> foundAllAccountHolders = accountHolderRepository.getAllAccountHolders();
     }

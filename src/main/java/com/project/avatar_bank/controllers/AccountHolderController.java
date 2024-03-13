@@ -1,6 +1,7 @@
 package com.project.avatar_bank.controllers;
 
 import com.project.avatar_bank.models.AccountHolder;
+import com.project.avatar_bank.models.AccountHolderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,9 @@ public class AccountHolderController {
 
     @Autowired
     AccountHolderService accountHolderService;
+
+    @Autowired
+    AccountHolderDTO accountHolderDTO;
 
 //    GET/SHOW
     public ResponseEntity<List<AccountHolder>> getAllAccountHolders() {
@@ -59,7 +63,5 @@ public class AccountHolderController {
         return new ResponseEntity<>(accountHolderService.findAllAccountHolders(), HttpStatus.CREATED);
 
     }
-
-
 
 }
