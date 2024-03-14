@@ -25,18 +25,18 @@ public class AccountHolderService {
         return accountHolderRepository.findById(id).get();
     }
 
-//    PUT/EDIT
-    public AccountHolder updateAccountHolderDetails(AccountHolderDTO accountHolderDTO, int id) {
-        AccountHolder toEditAccountHolder = accountHolderRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No account found"));
-
-        toEditAccountHolder.setEmploymentStatus(accountHolderDTO.getEmploymentStatus());
-        toEditAccountHolder.setAddress(accountHolderDTO.getAddress());
-        toEditAccountHolder.setEmail(accountHolderDTO.getEmail());
-        toEditAccountHolder.setPhoneNumber(accountHolderDTO.getPhoneNumber());
-
-        accountHolderRepository.save(toEditAccountHolder);
-        return toEditAccountHolder;
-    }
+////    PUT/EDIT
+//    public AccountHolder updateAccountHolderDetails(AccountHolderDTO accountHolderDTO, int id) {
+//        AccountHolder toEditAccountHolder = accountHolderRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No account found"));
+//
+//        toEditAccountHolder.setEmploymentStatus(accountHolderDTO.getEmploymentStatus());
+//        toEditAccountHolder.setAddress(accountHolderDTO.getAddress());
+//        toEditAccountHolder.setEmail(accountHolderDTO.getEmail());
+//        toEditAccountHolder.setPhoneNumber(accountHolderDTO.getPhoneNumber());
+//
+//        accountHolderRepository.save(toEditAccountHolder);
+//        return toEditAccountHolder;
+//    }
 
 //    POST/CREATE
     public AccountHolder addNewAccountHolder(AccountHolderDTO accountHolderDTO) {

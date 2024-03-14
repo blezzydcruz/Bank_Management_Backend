@@ -3,6 +3,8 @@ package com.project.avatar_bank.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "account_holders")
@@ -37,6 +39,8 @@ public class AccountHolder {
     @Column
     private LocalDate dateOfBirth;
 
+    private List<BankAccount> bankAccounts;
+
     public AccountHolder(String firstName, String lastName, EmploymentStatus employmentStatus, String address, String email, String password, String phoneNumber, LocalDate dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -46,6 +50,7 @@ public class AccountHolder {
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
+        this.bankAccounts = new ArrayList<>();
     }
 
     public AccountHolder() {
@@ -121,5 +126,13 @@ public class AccountHolder {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public List<BankAccount> getBankAccounts() {
+        return bankAccounts;
+    }
+
+    public void setBankAccounts(List<BankAccount> bankAccounts) {
+        this.bankAccounts = bankAccounts;
     }
 }

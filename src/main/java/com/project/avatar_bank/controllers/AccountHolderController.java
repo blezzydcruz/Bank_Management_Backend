@@ -33,12 +33,12 @@ public class AccountHolderController {
 
     }
 
-//    PUT/EDIT
-    public ResponseEntity<AccountHolder> editAccountHolderDetails(@RequestBody AccountHolderDTO accountHolderDTO, @PathVariable int id) {
-        AccountHolder editAccountHolder = accountHolderService.updateAccountHolderDetails(accountHolderDTO, id);
-        return new ResponseEntity<>(editAccountHolder, HttpStatus.OK);
-
-    }
+////    PUT/EDIT
+//    public ResponseEntity<AccountHolder> editAccountHolderDetails(@RequestBody AccountHolderDTO accountHolderDTO, @PathVariable int id) {
+//        AccountHolder editAccountHolder = accountHolderService.updateAccountHolderDetails(accountHolderDTO, id);
+//        return new ResponseEntity<>(editAccountHolder, HttpStatus.OK);
+//
+//    }
 
 //    POST/CREATE
     public ResponseEntity<AccountHolder> createNewAccountHolder(@RequestBody AccountHolderDTO accountHolderDTO) {

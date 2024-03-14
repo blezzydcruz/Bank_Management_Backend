@@ -1,8 +1,11 @@
 package com.project.avatar_bank.models;
 
+import jakarta.persistence.Entity;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class BankAccount {
 
     private int id;
