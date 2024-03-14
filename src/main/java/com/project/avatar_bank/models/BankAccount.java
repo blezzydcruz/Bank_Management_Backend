@@ -1,5 +1,6 @@
 package com.project.avatar_bank.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BankAccount {
@@ -16,12 +17,12 @@ public class BankAccount {
 
     private List<Transaction> transactions;
 
-    public BankAccount(String accountNumber, String sortCode, double balance, BankAccountType bankAccountType, List<Transaction> transactions) {
+    public BankAccount(String accountNumber, String sortCode, double balance, BankAccountType bankAccountType) {
         this.accountNumber = accountNumber;
         this.sortCode = sortCode;
         this.balance = balance;
         this.bankAccountType = bankAccountType;
-        this.transactions = transactions;
+        this.transactions = new ArrayList<>();
     }
 
     public BankAccount() {
