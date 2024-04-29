@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -18,5 +19,10 @@ public class BankAccountController {
 //    GET/SHOW
     public ResponseEntity<List<BankAccount>> getAllBankAccounts() {
         return new ResponseEntity<>(bankAccountService.findAllBankAccounts(), HttpStatus.FOUND);
+    }
+
+    public ResponseEntity<BankAccount> getBankAccountById(@PathVariable int id) {
+        BankAccount bankAccount = bankAccountService.findBankAccountById(id);
+        return new ResponseEntity<>(bankAccount, HttpStatus.OK);
     }
 }

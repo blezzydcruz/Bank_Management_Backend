@@ -38,6 +38,14 @@ public class BankAccountControllerTest {
     }
 
     public void canGetBankAccountById() {
+        BankAccount expectedBankAccount = new BankAccount();
+        expectedBankAccount.setId(1);
+
+        when(bankAccountService.findBankAccountById(1).thenReturn(expectedBankAccount));
+        ResponseEntity<BankAccount> foundBankAccount = bankAccountController.getBankAccountById(1);
+
+        assertThat(foundBankAccount.getStatusCode()).isEqualTo(HttpStatus.FOUND);
+        assertThat(foundBankAccount.getBody()).isEqualTo(expectedBankAccount.getId());
 
     }
 

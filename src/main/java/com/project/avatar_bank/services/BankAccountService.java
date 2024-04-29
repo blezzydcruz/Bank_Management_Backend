@@ -18,4 +18,8 @@ public class BankAccountService {
         return bankAccountRepository.findAll();
     }
 
+    public BankAccount findBankAccountById(int id) {
+        return bankAccountRepository.findById(id).get();
+    }
+
 }
