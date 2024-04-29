@@ -1,11 +1,17 @@
 package com.project.avatar_bank;
 
+import com.project.avatar_bank.controllers.BankAccountController;
+import com.project.avatar_bank.models.BankAccount;
+import com.project.avatar_bank.repositories.BankAccountRepository;
+import com.project.avatar_bank.services.BankAccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.when;
@@ -13,9 +19,11 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class BankAccountControllerTest {
 
+    @Autowired
     BankAccountController bankAccountController;
-    BankAccountService  bankAccountService;
-
+    @Autowired
+    BankAccountService bankAccountService;
+    @Autowired
     BankAccountRepository bankAccountRepository;
 
     public void canGetAllBankAccounts() {
