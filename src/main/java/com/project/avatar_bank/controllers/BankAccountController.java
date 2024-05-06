@@ -32,6 +32,6 @@ public class BankAccountController {
     public ResponseEntity<BankAccount> createNewBankAccount(@RequestBody BankAccountDTO bankAccountDTO) {
         bankAccountService.addNewBankAccount(bankAccountDTO);
         return new ResponseEntity<>(bankAccountService.addNewBankAccount(bankAccountDTO), HttpStatus.CREATED);
-        
+
     }
 }
