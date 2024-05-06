@@ -2,6 +2,7 @@ package com.project.avatar_bank;
 
 import com.project.avatar_bank.controllers.BankAccountController;
 import com.project.avatar_bank.models.BankAccount;
+import com.project.avatar_bank.models.BankAccountType;
 import com.project.avatar_bank.repositories.BankAccountRepository;
 import com.project.avatar_bank.services.BankAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,20 +42,16 @@ public class BankAccountControllerTest {
         BankAccount expectedBankAccount = new BankAccount();
         expectedBankAccount.setId(1);
 
-        when(bankAccountService.findBankAccountById(1).thenReturn(expectedBankAccount));
+        when(bankAccountService.findBankAccountById(1)).thenReturn(expectedBankAccount);
         ResponseEntity<BankAccount> foundBankAccount = bankAccountController.getBankAccountById(1);
 
         assertThat(foundBankAccount.getStatusCode()).isEqualTo(HttpStatus.FOUND);
-        assertThat(foundBankAccount.getBody()).isEqualTo(expectedBankAccount.getId());
+        assertThat(foundBankAccount.getBody()).isEqualTo(expectedBankAccount);
 
     }
-
-    public void canGetBankAccountByType() {
-
-    }
-
 
     public void canCreateNewBankAccount() {
+
 
     }
 

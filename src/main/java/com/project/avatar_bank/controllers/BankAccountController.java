@@ -25,4 +25,6 @@ public class BankAccountController {
         BankAccount bankAccount = bankAccountService.findBankAccountById(id);
         return new ResponseEntity<>(bankAccount, HttpStatus.OK);
     }
+
+
 }
