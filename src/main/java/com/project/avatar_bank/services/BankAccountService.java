@@ -31,7 +31,7 @@ public class BankAccountService {
     public BankAccount addNewBankAccount(BankAccountDTO bankAccountDTO) {
         BankAccount newBankAccount = new BankAccount(bankAccountDTO.getAccountNumber(), bankAccountDTO.getSortCode(), bankAccountDTO.getBalance(), bankAccountDTO.getBankAccountType());
         return bankAccountRepository.save(newBankAccount);
-        
+
     }
 
 }

@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface BankAccountRepository extends JpaRepository<BankAccount, Integer> {
 
-    List<BankAccount> findByBankAccountId(int id);
+//    List<BankAccount> findByBankAccountId(int id);
 }

@@ -34,4 +34,10 @@ public class BankAccountController {
         return new ResponseEntity<>(bankAccountService.addNewBankAccount(bankAccountDTO), HttpStatus.CREATED);
 
     }
+
+//    DELETE
+    public ResponseEntity<Integer> deleteBankAccount(@PathVariable int id) {
+        bankAccountService.deleteAccount(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
 }

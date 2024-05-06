@@ -54,18 +54,17 @@ public class BankAccountControllerTest {
     public void canCreateNewBankAccount() {
         BankAccountDTO bankAccountDTO = new BankAccountDTO();
 
-        ResponseEntity<BankAccount> bankAccount = bankAccountController.createNewBankAccount(bankAccountDTO);
+        ResponseEntity<BankAccount> createdNewBankAccount = bankAccountController.createNewBankAccount(bankAccountDTO);
 
-        assertThat(bankAccount.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        assertThat(createdNewBankAccount.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
 
     }
 
     public void canDeleteBankAccount() {
+        ResponseEntity<Integer> deletedBankAccount = bankAccountController.deleteBankAccount(id);
 
+        assertThat(deletedBankAccount.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
-    public void canGetAllTransactionsOfBankAccount() {
-
-    }
 }
