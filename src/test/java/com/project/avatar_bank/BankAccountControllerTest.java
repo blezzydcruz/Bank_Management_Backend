@@ -2,6 +2,7 @@ package com.project.avatar_bank;
 
 import com.project.avatar_bank.controllers.BankAccountController;
 import com.project.avatar_bank.models.BankAccount;
+import com.project.avatar_bank.models.BankAccountDTO;
 import com.project.avatar_bank.models.BankAccountType;
 import com.project.avatar_bank.repositories.BankAccountRepository;
 import com.project.avatar_bank.services.BankAccountService;
@@ -51,6 +52,11 @@ public class BankAccountControllerTest {
     }
 
     public void canCreateNewBankAccount() {
+        BankAccountDTO bankAccountDTO = new BankAccountDTO();
+
+        ResponseEntity<BankAccount> bankAccount = bankAccountController.createNewBankAccount(bankAccountDTO);
+
+        assertThat(bankAccount.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
 
     }
